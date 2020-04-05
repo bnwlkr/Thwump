@@ -13,6 +13,8 @@
 		FFDA4CB62439AB22004E5FD6 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA4CB52439AB22004E5FD6 /* MessagesViewController.swift */; };
 		FFDA4CB92439AB22004E5FD6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CB72439AB22004E5FD6 /* MainInterface.storyboard */; };
 		FFDA4CBB2439AB24004E5FD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CBA2439AB24004E5FD6 /* Assets.xcassets */; };
+		FFDA4CC72439ABBA004E5FD6 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA4CC62439ABBA004E5FD6 /* SoundManager.swift */; };
+		FFDA4CC92439AD49004E5FD6 /* media in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CC82439AD49004E5FD6 /* media */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		FFDA4CB82439AB22004E5FD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		FFDA4CBA2439AB24004E5FD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFDA4CBC2439AB24004E5FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFDA4CC62439ABBA004E5FD6 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		FFDA4CC82439AD49004E5FD6 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				FFDA4CB52439AB22004E5FD6 /* MessagesViewController.swift */,
+				FFDA4CC62439ABBA004E5FD6 /* SoundManager.swift */,
 				FFDA4CB72439AB22004E5FD6 /* MainInterface.storyboard */,
+				FFDA4CC82439AD49004E5FD6 /* media */,
 				FFDA4CBA2439AB24004E5FD6 /* Assets.xcassets */,
 				FFDA4CBC2439AB24004E5FD6 /* Info.plist */,
 			);
@@ -197,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFDA4CC92439AD49004E5FD6 /* media in Resources */,
 				FFDA4CBB2439AB24004E5FD6 /* Assets.xcassets in Resources */,
 				FFDA4CB92439AB22004E5FD6 /* MainInterface.storyboard in Resources */,
 			);
@@ -210,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFDA4CB62439AB22004E5FD6 /* MessagesViewController.swift in Sources */,
+				FFDA4CC72439ABBA004E5FD6 /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
