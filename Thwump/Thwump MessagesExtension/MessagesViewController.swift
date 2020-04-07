@@ -9,11 +9,33 @@
 import UIKit
 import Messages
 
-class MessagesViewController: MSMessagesAppViewController {
+class MessagesViewController: MSMessagesAppViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+	
+	@IBOutlet weak var soundsCollectionView: UICollectionView!
+	
+	var sounds: [Sound] = []
+	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return self.sounds.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! SoundsCollectionViewCell
+		cell.soundTitleLabel.text = sounds[indexPath.item].title
+		cell.soundTextureView.image = sounds[indexPath.item].texture
+		return cell
+	}
+	
+	
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SoundManager.getSounds()
+        self.sounds = SoundManager.getSounds()
+        print(sounds)
+        self.soundsCollectionView.delegate = self
+        self.soundsCollectionView.dataSource = self
+        self.soundsCollectionView.reloadData()
+//        soundsCollectionView.reloadData()
     }
     
     // MARK: - Conversation Handling

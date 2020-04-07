@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FFB53B1F243C2BDA00CB5789 /* SoundsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB53B1E243C2BDA00CB5789 /* SoundsCollectionViewCell.swift */; };
 		FFDA4CA72439AB22004E5FD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CA62439AB22004E5FD6 /* Assets.xcassets */; };
 		FFDA4CAE2439AB22004E5FD6 /* Thwump MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FFDA4CAD2439AB22004E5FD6 /* Thwump MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FFDA4CB32439AB22004E5FD6 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDA4CB22439AB22004E5FD6 /* Messages.framework */; };
@@ -42,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FFB53B1E243C2BDA00CB5789 /* SoundsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsCollectionViewCell.swift; sourceTree = "<group>"; };
 		FFDA4CA32439AB1C004E5FD6 /* Thwump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thwump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFDA4CA62439AB22004E5FD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFDA4CA82439AB22004E5FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				FFDA4CB52439AB22004E5FD6 /* MessagesViewController.swift */,
 				FFDA4CC62439ABBA004E5FD6 /* SoundManager.swift */,
+				FFB53B1E243C2BDA00CB5789 /* SoundsCollectionViewCell.swift */,
 				FFDA4CB72439AB22004E5FD6 /* MainInterface.storyboard */,
 				FFDA4CC82439AD49004E5FD6 /* media */,
 				FFDA4CBA2439AB24004E5FD6 /* Assets.xcassets */,
@@ -218,6 +221,7 @@
 			files = (
 				FFDA4CB62439AB22004E5FD6 /* MessagesViewController.swift in Sources */,
 				FFDA4CC72439ABBA004E5FD6 /* SoundManager.swift in Sources */,
+				FFB53B1F243C2BDA00CB5789 /* SoundsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

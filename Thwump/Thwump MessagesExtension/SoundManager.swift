@@ -12,21 +12,31 @@ import UIKit
 class SoundManager {
 
 	static func getSounds () -> [Sound] {
-		let soundUrls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: "media/sounds")
-		let textureUrls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: "media/textures")
-		print(soundUrls, textureUrls)
-		return []
+		var result: [Sound] = []
+	
+		let soundURLs = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: "media/sounds") ?? []
+		let textureURLs = Bundle.main.urls(forResourcesWithExtension: "png", subdirectory: "media/textures") ?? []
+		
+		for soundURL in soundURLs {
+			let soundName = soundURL.deletingPathExtension().lastPathComponent
+			for textureURL in textureURLs {
+				if textureURL.deletingPathExtension().lastPathComponent == soundName {
+					if let textureData = try? Data(contentsOf: textureURL) {
+						if let texture = UIImage(data: textureData) {
+							result.append(Sound(texture: texture, title: soundName, soundURL: soundURL))
+						}
+					}
+				}
+			}
+		}
+		return result
 	}
-
 }
-
-
 
 struct Sound {
 
-	var texture: UIImage!
-	var title: String!
-	var filePath: URL!
-
+	var texture: UIImage
+	var title: String
+	var soundURL: URL
 
 }
