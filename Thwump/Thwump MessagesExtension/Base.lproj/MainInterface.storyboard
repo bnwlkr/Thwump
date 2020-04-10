@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,66 +14,11 @@
                     <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vtH-G8-LrL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ciT-Qh-V4e">
-                                    <size key="itemSize" width="223" height="318"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Jwz-KU-0bt" customClass="SoundsCollectionViewCell" customModule="Thwump_MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="48.5" y="0.0" width="223" height="318"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Dcy-rf-kZz">
-                                            <rect key="frame" x="0.0" y="0.0" width="223" height="318"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xim-fE-QPB">
-                                                    <rect key="frame" x="7" y="8" width="209" height="225"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="225" id="LQb-pD-Sbu"/>
-                                                        <constraint firstAttribute="width" constant="209" id="nUX-lF-2KJ"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0A-wc-t1z">
-                                                    <rect key="frame" x="-2" y="247" width="227" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="227" id="xeb-2Y-yYf"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="xim-fE-QPB" firstAttribute="top" secondItem="Dcy-rf-kZz" secondAttribute="top" constant="8" id="2V0-rQ-FeL"/>
-                                                <constraint firstItem="m0A-wc-t1z" firstAttribute="centerX" secondItem="Dcy-rf-kZz" secondAttribute="centerX" id="VSi-78-rRl"/>
-                                                <constraint firstItem="xim-fE-QPB" firstAttribute="centerX" secondItem="Dcy-rf-kZz" secondAttribute="centerX" id="pJH-Lr-6lZ"/>
-                                                <constraint firstItem="m0A-wc-t1z" firstAttribute="top" secondItem="xim-fE-QPB" secondAttribute="bottom" constant="14" id="t6O-cO-HIS"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="223" height="318"/>
-                                        <connections>
-                                            <outlet property="soundTextureView" destination="xim-fE-QPB" id="T8i-Ds-Jpg"/>
-                                            <outlet property="soundTitleLabel" destination="m0A-wc-t1z" id="Bx0-8K-6de"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="LDy-ih-0nr"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
-                    <connections>
-                        <outlet property="soundsCollectionView" destination="vtH-G8-LrL" id="UNJ-aB-1rz"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

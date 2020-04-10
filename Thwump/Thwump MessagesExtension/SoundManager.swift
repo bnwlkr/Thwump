@@ -29,7 +29,7 @@ class SoundManager {
 				}
 			}
 		}
-		return result
+		return [result[0]]
 	}
 }
 
