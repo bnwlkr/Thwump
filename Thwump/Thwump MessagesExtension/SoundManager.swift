@@ -22,14 +22,14 @@ class SoundManager {
 			for textureURL in textureURLs {
 				if textureURL.deletingPathExtension().lastPathComponent == soundName {
 					if let textureData = try? Data(contentsOf: textureURL) {
-						if let texture = UIImage(data: textureData) {
+						if let texture = UIImage(named: soundName) {
 							result.append(Sound(texture: texture, title: soundName, soundURL: soundURL))
 						}
 					}
 				}
 			}
 		}
-		return [result[0]]
+		return result
 	}
 }
 
