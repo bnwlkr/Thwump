@@ -22,7 +22,7 @@ class SoundManager {
 			for textureURL in textureURLs {
 				if textureURL.deletingPathExtension().lastPathComponent == soundName {
 					if let textureData = try? Data(contentsOf: textureURL) {
-						if let texture = UIImage(named: soundName) {
+						if let texture = UIImage(data: textureData) {
 							result.append(Sound(texture: texture, title: soundName, soundURL: soundURL))
 						}
 					}
@@ -34,9 +34,7 @@ class SoundManager {
 }
 
 struct Sound {
-
 	var texture: UIImage
 	var title: String
 	var soundURL: URL
-
 }

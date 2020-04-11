@@ -8,10 +8,16 @@
 
 import UIKit
 import Messages
+import AVFoundation
 
-class MessagesViewController: MSMessagesAppViewController {
-    
+protocol SoundPlayerDelegate {
+	func playSound(url: URL)
+}
+
+class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate {
+	
     var sounds: [Sound] = []
+    var player: AVAudioPlayer!
     
     fileprivate let collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -21,8 +27,6 @@ class MessagesViewController: MSMessagesAppViewController {
         cv.register(CustomCell.self, forCellWithReuseIdentifier: "cell")
         return cv
     }()
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +42,17 @@ class MessagesViewController: MSMessagesAppViewController {
         collectionView.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5).isActive = true
         collectionView.contentInset = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
     }
+    
+    func playSound(url: URL) {
+		do {
+			try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+			try AVAudioSession.sharedInstance().setActive(true)
+			player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+			player.play()
+		} catch let error {
+			print(error.localizedDescription)
+		}
+	}
 
 }
 
@@ -51,7 +66,8 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
-        cell.imageView.image = self.sounds[indexPath.item].texture
+        cell.sound = self.sounds[indexPath.item]
+        cell.soundPlayerDelegate = self
         return cell
     }
 	
@@ -62,6 +78,14 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout, UICollecti
 
 class CustomCell: UICollectionViewCell {
     
+    var sound: Sound? {
+		didSet {
+			self.imageView.image = sound?.texture
+		}
+	}
+	
+	var soundPlayerDelegate: SoundPlayerDelegate?
+    
     fileprivate let imageView: UIImageView = {
        let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -69,10 +93,16 @@ class CustomCell: UICollectionViewCell {
         return iv
     }()
     
+	@objc func handleTap () {
+		soundPlayerDelegate?.playSound(url: sound!.soundURL)
+	}
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         contentView.addSubview(imageView)
+        contentView.isUserInteractionEnabled = true
+        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
 		contentView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.0)
 		contentView.clipsToBounds = true
 		contentView.layer.cornerRadius = 12
