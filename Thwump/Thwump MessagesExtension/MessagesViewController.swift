@@ -14,7 +14,11 @@ protocol SoundPlayerDelegate {
 	func playSound(url: URL)
 }
 
-class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate {
+protocol MessageSenderDelegate {
+	func sendMessage(sound: Sound)
+}
+
+class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, MessageSenderDelegate {
 	
     var sounds: [Sound] = []
     var player: AVAudioPlayer!
@@ -53,7 +57,13 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate {
 			print(error.localizedDescription)
 		}
 	}
-
+	
+	func sendMessage(sound: Sound) {
+		if activeConversation != nil {
+			// The alternate filename doesn't actually work right now. Apparently it's been broken for years. Come on Apple.
+			activeConversation?.sendAttachment(sound.soundURL, withAlternateFilename: "Thwump", completionHandler: nil)
+		}
+	}
 }
 
 extension MessagesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -68,6 +78,7 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout, UICollecti
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
         cell.sound = self.sounds[indexPath.item]
         cell.soundPlayerDelegate = self
+        cell.messageSenderDelegate = self
         return cell
     }
 	
@@ -85,6 +96,7 @@ class CustomCell: UICollectionViewCell {
 	}
 	
 	var soundPlayerDelegate: SoundPlayerDelegate?
+	var messageSenderDelegate: MessageSenderDelegate?
     
     fileprivate let imageView: UIImageView = {
        let iv = UIImageView()
@@ -93,16 +105,33 @@ class CustomCell: UICollectionViewCell {
         return iv
     }()
     
-	@objc func handleTap () {
+	@objc func handleSingleTap () {
+		print("single tap")
 		soundPlayerDelegate?.playSound(url: sound!.soundURL)
+	}
+	
+	@objc func handleDoubleTap () {
+		print("double tap")
+		messageSenderDelegate?.sendMessage(sound: sound!)
 	}
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         contentView.addSubview(imageView)
+        
         contentView.isUserInteractionEnabled = true
-        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        let singleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleSingleTap))
+        singleTapRecognizer.numberOfTapsRequired = 1
+		
+		let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+		doubleTapRecognizer.numberOfTapsRequired = 2
+		
+		singleTapRecognizer.require(toFail: doubleTapRecognizer)
+		
+		contentView.addGestureRecognizer(singleTapRecognizer)
+		contentView.addGestureRecognizer(doubleTapRecognizer)
+		
 		contentView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.0)
 		contentView.clipsToBounds = true
 		contentView.layer.cornerRadius = 12
