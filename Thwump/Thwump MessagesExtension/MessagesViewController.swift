@@ -43,8 +43,16 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: view.frame.width * 0.45).isActive = true
         collectionView.contentInset = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
+        let instructionLabel = UILabel()
+        instructionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(instructionLabel)
+        instructionLabel.text = "single tap to preview, double tap to send, touch and hold to listen to a message"
+        instructionLabel.font = .systemFont(ofSize: 10.0)
+        instructionLabel.textColor = .gray
+		instructionLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10).isActive = true
+		instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     func playSound(url: URL) {
