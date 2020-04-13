@@ -18,6 +18,8 @@ protocol MessageSenderDelegate {
 	func sendMessage(sound: Sound)
 }
 
+let CELL_ASPECT: CGFloat = 0.83
+
 class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, MessageSenderDelegate {
 	
     var sounds: [Sound] = []
@@ -28,6 +30,8 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = .white
+        cv.showsHorizontalScrollIndicator = false
         cv.register(CustomCell.self, forCellWithReuseIdentifier: "cell")
         return cv
     }()
@@ -35,25 +39,31 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sounds = SoundManager.getSounds()
-        view.addSubview(collectionView)
-        collectionView.backgroundColor = .white
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+		view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: view.frame.width * 0.45).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.68).isActive = true
         collectionView.contentInset = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
+        collectionView.delegate = self
+		collectionView.dataSource = self
+        
         let instructionLabel = UILabel()
+        instructionLabel.textAlignment = .center
+        instructionLabel.numberOfLines = -1
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(instructionLabel)
         instructionLabel.text = "single tap to preview, double tap to send, touch and hold to listen to a message"
         instructionLabel.font = .systemFont(ofSize: 10.0)
         instructionLabel.textColor = .gray
-		instructionLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10).isActive = true
+		instructionLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
+		instructionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
 		instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    }
+	}
+    
     
     func playSound(url: URL) {
 		do {
@@ -76,7 +86,9 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
 
 extension MessagesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width * 0.33, height: collectionView.frame.height * 0.8)
+        let height = collectionView.frame.height * 0.8
+        let width = height * CELL_ASPECT
+        return CGSize(width: width, height: height)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.sounds.count
