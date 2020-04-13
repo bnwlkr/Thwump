@@ -46,10 +46,8 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.68).isActive = true
+        
         collectionView.contentInset = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
-        collectionView.delegate = self
-		collectionView.dataSource = self
         
         let instructionLabel = UILabel()
         instructionLabel.textAlignment = .center
@@ -62,6 +60,10 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
 		instructionLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
 		instructionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
 		instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		
+		collectionView.heightAnchor.constraint(equalToConstant: (view.frame.size.height - instructionLabel.frame.size.height) * 0.7).isActive = true
+		collectionView.delegate = self
+		collectionView.dataSource = self
 	}
     
     
