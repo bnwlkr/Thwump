@@ -19,7 +19,7 @@ class SoundManager {
 		
 		for textureURL in textureURLs {
 			let soundNameWithOrder = textureURL.deletingPathExtension().lastPathComponent
-			let soundName = String(soundNameWithOrder.dropFirst(2))
+			let soundName = String(soundNameWithOrder.split(separator: "_")[1])
 			for soundURL in soundURLs {
 				if soundURL.deletingPathExtension().lastPathComponent == soundName {
 					if let textureData = try? Data(contentsOf: textureURL) {
@@ -30,7 +30,7 @@ class SoundManager {
 				}
 			}
 		}
-		return result.sorted(by: {a, b in a.title < b.title}).map({Sound(texture: $0.texture, title: String($0.title.dropFirst(2)), soundURL: $0.soundURL)})
+		return result.sorted(by: {a, b in a.title < b.title}).map({Sound(texture: $0.texture, title: String($0.title.split(separator: "_")[1]), soundURL: $0.soundURL)})
 	}
 }
 

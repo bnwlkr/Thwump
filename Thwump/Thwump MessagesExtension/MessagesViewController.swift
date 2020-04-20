@@ -30,15 +30,16 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = .white
         cv.showsHorizontalScrollIndicator = false
         cv.register(CustomCell.self, forCellWithReuseIdentifier: "cell")
+        cv.backgroundColor = .clear
         return cv
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sounds = SoundManager.getSounds()
+        view.backgroundColor = .tertiarySystemBackground
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +57,7 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
         view.addSubview(instructionLabel)
         instructionLabel.text = "single tap to preview, double tap to send, touch and hold to listen to a message"
         instructionLabel.font = .systemFont(ofSize: 10.0)
-        instructionLabel.textColor = .gray
+        instructionLabel.textColor = .secondaryLabel
 		instructionLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
 		instructionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
 		instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -99,8 +100,7 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
         cell.sound = self.sounds[indexPath.item]
-        cell.soundPlayerDelegate = self
-        cell.messageSenderDelegate = self
+        cell.messagesViewController = self
         return cell
     }
 	
@@ -109,16 +109,18 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout, UICollecti
 	}
 }
 
-class CustomCell: UICollectionViewCell {
+class CustomCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     
-    var sound: Sound? {
+    let SEND_THRESHOLD = 0.5
+    
+    var sound: Sound! {
 		didSet {
 			self.imageView.image = sound?.texture
 		}
 	}
 	
-	var soundPlayerDelegate: SoundPlayerDelegate?
-	var messageSenderDelegate: MessageSenderDelegate?
+	var messagesViewController: MessagesViewController!
+	var touchTimer: Timer?
     
     fileprivate let imageView: UIImageView = {
        let iv = UIImageView()
@@ -127,14 +129,26 @@ class CustomCell: UICollectionViewCell {
         return iv
     }()
     
-	@objc func handleSingleTap () {
-		print("single tap")
-		soundPlayerDelegate?.playSound(url: sound!.soundURL)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		UIView.animate(withDuration: 0.2) {
+			self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+		}
+		touchTimer = Timer.scheduledTimer(withTimeInterval: SEND_THRESHOLD, repeats: false, block: { _ in
+			self.messagesViewController.sendMessage(sound: self.sound)
+			var notificationFeedbackGenerator: UINotificationFeedbackGenerator? = UINotificationFeedbackGenerator()
+			notificationFeedbackGenerator?.prepare()
+			notificationFeedbackGenerator?.notificationOccurred(.success)
+			notificationFeedbackGenerator = nil
+		})
 	}
 	
-	@objc func handleDoubleTap () {
-		print("double tap")
-		messageSenderDelegate?.sendMessage(sound: sound!)
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		UIView.animate(withDuration: 0.2) {
+			self.transform = .identity
+		}
+		touchTimer?.invalidate()
+		touchTimer = nil
+		messagesViewController.playSound(url: sound.soundURL)
 	}
     
     override init(frame: CGRect) {
@@ -143,22 +157,22 @@ class CustomCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         
         contentView.isUserInteractionEnabled = true
-        let singleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleSingleTap))
-        singleTapRecognizer.numberOfTapsRequired = 1
+        
+        
+//        let soundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleSoundTap))
+//        soundTapRecognizer.numberOfTapsRequired = 1
+//
+//		let sendSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSendSwipe))
+//		sendSwipeRecognizer.direction = .up
+//
+//		contentView.addGestureRecognizer(soundTapRecognizer)
+//		contentView.addGestureRecognizer(sendSwipeRecognizer)
 		
-		let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
-		doubleTapRecognizer.numberOfTapsRequired = 2
-		
-		singleTapRecognizer.require(toFail: doubleTapRecognizer)
-		
-		contentView.addGestureRecognizer(singleTapRecognizer)
-		contentView.addGestureRecognizer(doubleTapRecognizer)
-		
-		contentView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.0)
+		contentView.backgroundColor = UIColor(named: "cellColor")
 		contentView.clipsToBounds = true
 		contentView.layer.cornerRadius = 12
 		
-		contentView.layer.shadowColor = UIColor.black.cgColor
+		contentView.layer.shadowColor = UIColor.label.cgColor
         contentView.layer.shadowRadius = 4.0
         contentView.layer.shadowOpacity = 0.2
         contentView.layer.shadowOffset = .zero
