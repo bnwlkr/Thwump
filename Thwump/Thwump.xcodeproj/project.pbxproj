@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		FFB53B1F243C2BDA00CB5789 /* SoundsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB53B1E243C2BDA00CB5789 /* SoundsCollectionViewCell.swift */; };
-		FFDA4CA72439AB22004E5FD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CA62439AB22004E5FD6 /* Assets.xcassets */; };
-		FFDA4CAE2439AB22004E5FD6 /* Thwump MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FFDA4CAD2439AB22004E5FD6 /* Thwump MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FFDA4CB32439AB22004E5FD6 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDA4CB22439AB22004E5FD6 /* Messages.framework */; };
 		FFDA4CB62439AB22004E5FD6 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA4CB52439AB22004E5FD6 /* MessagesViewController.swift */; };
 		FFDA4CB92439AB22004E5FD6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CB72439AB22004E5FD6 /* MainInterface.storyboard */; };
@@ -18,33 +16,8 @@
 		FFDA4CC92439AD49004E5FD6 /* media in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CC82439AD49004E5FD6 /* media */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		FFDA4CAF2439AB22004E5FD6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FFDA4C9D2439AB1C004E5FD6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FFDA4CAC2439AB22004E5FD6;
-			remoteInfo = "Thwump MessagesExtension";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		FFDA4CC22439AB24004E5FD6 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				FFDA4CAE2439AB22004E5FD6 /* Thwump MessagesExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		FFB53B1E243C2BDA00CB5789 /* SoundsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsCollectionViewCell.swift; sourceTree = "<group>"; };
-		FFDA4CA32439AB1C004E5FD6 /* Thwump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thwump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFDA4CA62439AB22004E5FD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFDA4CA82439AB22004E5FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFDA4CAD2439AB22004E5FD6 /* Thwump MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Thwump MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,7 +55,6 @@
 		FFDA4CA42439AB1C004E5FD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FFDA4CA32439AB1C004E5FD6 /* Thwump.app */,
 				FFDA4CAD2439AB22004E5FD6 /* Thwump MessagesExtension.appex */,
 			);
 			name = Products;
@@ -122,23 +94,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FFDA4CA22439AB1C004E5FD6 /* Thwump */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FFDA4CC32439AB24004E5FD6 /* Build configuration list for PBXNativeTarget "Thwump" */;
-			buildPhases = (
-				FFDA4CA12439AB1C004E5FD6 /* Resources */,
-				FFDA4CC22439AB24004E5FD6 /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FFDA4CB02439AB22004E5FD6 /* PBXTargetDependency */,
-			);
-			name = Thwump;
-			productName = Thwump;
-			productReference = FFDA4CA32439AB1C004E5FD6 /* Thwump.app */;
-			productType = "com.apple.product-type.application.messages";
-		};
 		FFDA4CAC2439AB22004E5FD6 /* Thwump MessagesExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFDA4CBF2439AB24004E5FD6 /* Build configuration list for PBXNativeTarget "Thwump MessagesExtension" */;
@@ -166,9 +121,6 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = bnwlkr;
 				TargetAttributes = {
-					FFDA4CA22439AB1C004E5FD6 = {
-						CreatedOnToolsVersion = 11.3;
-					};
 					FFDA4CAC2439AB22004E5FD6 = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -187,21 +139,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FFDA4CA22439AB1C004E5FD6 /* Thwump */,
 				FFDA4CAC2439AB22004E5FD6 /* Thwump MessagesExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FFDA4CA12439AB1C004E5FD6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FFDA4CA72439AB22004E5FD6 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FFDA4CAB2439AB22004E5FD6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,14 +169,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FFDA4CB02439AB22004E5FD6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FFDA4CAC2439AB22004E5FD6 /* Thwump MessagesExtension */;
-			targetProxy = FFDA4CAF2439AB22004E5FD6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FFDA4CB72439AB22004E5FD6 /* MainInterface.storyboard */ = {
@@ -297,7 +232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -351,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -368,6 +303,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T7ST5D3QZ2;
 				INFOPLIST_FILE = "Thwump MessagesExtension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -388,6 +324,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T7ST5D3QZ2;
 				INFOPLIST_FILE = "Thwump MessagesExtension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -396,36 +333,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = bnwlkr.Thwump.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		FFDA4CC42439AB24004E5FD6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T7ST5D3QZ2;
-				INFOPLIST_FILE = Thwump/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = bnwlkr.Thwump;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		FFDA4CC52439AB24004E5FD6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T7ST5D3QZ2;
-				INFOPLIST_FILE = Thwump/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = bnwlkr.Thwump;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -448,15 +355,6 @@
 			buildConfigurations = (
 				FFDA4CC02439AB24004E5FD6 /* Debug */,
 				FFDA4CC12439AB24004E5FD6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FFDA4CC32439AB24004E5FD6 /* Build configuration list for PBXNativeTarget "Thwump" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FFDA4CC42439AB24004E5FD6 /* Debug */,
-				FFDA4CC52439AB24004E5FD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

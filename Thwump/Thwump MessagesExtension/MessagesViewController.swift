@@ -10,22 +10,19 @@ import UIKit
 import Messages
 import AVFoundation
 
-protocol SoundPlayerDelegate {
-	func playSound(url: URL)
-}
-
-protocol MessageSenderDelegate {
-	func sendMessage(sound: Sound)
-}
-
 let CELL_ASPECT: CGFloat = 0.83
 
-class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, MessageSenderDelegate {
+class MessagesViewController: MSMessagesAppViewController, UICollectionViewDelegate {
+	
+	let SEND_THRESHOLD = 0.5
 	
     var sounds: [Sound] = []
     var player: AVAudioPlayer!
+    var touchTimer: Timer?
+	var didSend = false
+	var currentlySelected: CustomCell?
     
-    fileprivate let collectionView:UICollectionView = {
+    fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -36,10 +33,17 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
         return cv
     }()
 
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		if currentlySelected != nil {
+			touchesEnded(cell: currentlySelected!)
+		}
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sounds = SoundManager.getSounds()
         view.backgroundColor = .tertiarySystemBackground
+        collectionView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,16 +59,43 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
         instructionLabel.numberOfLines = -1
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(instructionLabel)
-        instructionLabel.text = "single tap to preview, double tap to send, touch and hold to listen to a message"
+        instructionLabel.text = "tap to preview, long press to send, long press to listen to a received message"
         instructionLabel.font = .systemFont(ofSize: 10.0)
         instructionLabel.textColor = .secondaryLabel
 		instructionLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
-		instructionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
+		instructionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -60).isActive = true
 		instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 		
 		collectionView.heightAnchor.constraint(equalToConstant: (view.frame.size.height - instructionLabel.frame.size.height) * 0.7).isActive = true
 		collectionView.delegate = self
 		collectionView.dataSource = self
+	}
+	
+	func touchesBegan(cell: CustomCell) {
+		currentlySelected = cell
+		UIView.animate(withDuration: 0.1) {
+			cell.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+		}
+		touchTimer = Timer.scheduledTimer(withTimeInterval: SEND_THRESHOLD, repeats: false, block: { _ in
+			self.sendMessage(sound: cell.sound)
+			self.didSend = true
+			let notificationFeedbackGenerator = UINotificationFeedbackGenerator()
+			notificationFeedbackGenerator.prepare()
+			notificationFeedbackGenerator.notificationOccurred(.success)
+		})
+	}
+	
+	func touchesEnded(cell: CustomCell) {
+		currentlySelected = nil
+		UIView.animate(withDuration: 0.2) {
+			cell.transform = .identity
+		}
+		touchTimer?.invalidate()
+		touchTimer = nil
+		if !didSend {
+			self.playSound(url: cell.sound.soundURL)
+		}
+		didSend = false
 	}
     
     
@@ -87,31 +118,9 @@ class MessagesViewController: MSMessagesAppViewController, SoundPlayerDelegate, 
 	}
 }
 
-extension MessagesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = collectionView.frame.height * 0.8
-        let width = height * CELL_ASPECT
-        return CGSize(width: width, height: height)
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.sounds.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
-        cell.sound = self.sounds[indexPath.item]
-        cell.messagesViewController = self
-        return cell
-    }
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-		return 25
-	}
-}
 
-class CustomCell: UICollectionViewCell, UIGestureRecognizerDelegate {
+class CustomCell: UICollectionViewCell {
     
-    let SEND_THRESHOLD = 0.5
     
     var sound: Sound! {
 		didSet {
@@ -120,7 +129,7 @@ class CustomCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 	}
 	
 	var messagesViewController: MessagesViewController!
-	var touchTimer: Timer?
+	
     
     fileprivate let imageView: UIImageView = {
        let iv = UIImageView()
@@ -129,26 +138,13 @@ class CustomCell: UICollectionViewCell, UIGestureRecognizerDelegate {
         return iv
     }()
     
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		UIView.animate(withDuration: 0.2) {
-			self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-		}
-		touchTimer = Timer.scheduledTimer(withTimeInterval: SEND_THRESHOLD, repeats: false, block: { _ in
-			self.messagesViewController.sendMessage(sound: self.sound)
-			var notificationFeedbackGenerator: UINotificationFeedbackGenerator? = UINotificationFeedbackGenerator()
-			notificationFeedbackGenerator?.prepare()
-			notificationFeedbackGenerator?.notificationOccurred(.success)
-			notificationFeedbackGenerator = nil
-		})
+		messagesViewController.touchesBegan(cell: self)
 	}
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		UIView.animate(withDuration: 0.2) {
-			self.transform = .identity
-		}
-		touchTimer?.invalidate()
-		touchTimer = nil
-		messagesViewController.playSound(url: sound.soundURL)
+		messagesViewController.touchesEnded(cell: self)
 	}
     
     override init(frame: CGRect) {
@@ -157,16 +153,6 @@ class CustomCell: UICollectionViewCell, UIGestureRecognizerDelegate {
         contentView.addSubview(imageView)
         
         contentView.isUserInteractionEnabled = true
-        
-        
-//        let soundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleSoundTap))
-//        soundTapRecognizer.numberOfTapsRequired = 1
-//
-//		let sendSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSendSwipe))
-//		sendSwipeRecognizer.direction = .up
-//
-//		contentView.addGestureRecognizer(soundTapRecognizer)
-//		contentView.addGestureRecognizer(sendSwipeRecognizer)
 		
 		contentView.backgroundColor = UIColor(named: "cellColor")
 		contentView.clipsToBounds = true
@@ -188,4 +174,27 @@ class CustomCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension MessagesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = collectionView.frame.height * 0.8
+        let width = height * CELL_ASPECT
+        return CGSize(width: width, height: height)
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.sounds.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
+        cell.sound = self.sounds[indexPath.item]
+        cell.messagesViewController = self
+        return cell
+    }
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		return 25
+	}
 }
