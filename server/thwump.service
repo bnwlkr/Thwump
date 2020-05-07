@@ -1,0 +1,14 @@
+[Unit]
+Description=Thwump Media Server
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=bnwlkr
+ExecStart=/snap/bin/go run /home/bnwlkr/Thwump/server/server.go
+
+[Install]
+WantedBy=multi-user.target

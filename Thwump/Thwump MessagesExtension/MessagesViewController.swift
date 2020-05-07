@@ -21,8 +21,10 @@ class MessagesViewController: MSMessagesAppViewController, UICollectionViewDeleg
     var touchTimer: Timer?
 	var didSend = false
 	var currentlySelected: CustomCell?
+	
+	var activityIndicator = UIActivityIndicatorView()
     
-    fileprivate let collectionView: UICollectionView = {
+	let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -39,15 +41,26 @@ class MessagesViewController: MSMessagesAppViewController, UICollectionViewDeleg
 		}
 	}
 	
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sounds = SoundManager.getSounds()
+		let soundManager = SoundManager()
+		activityIndicator.startAnimating()
+		activityIndicator.isHidden = false
+		activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+		soundManager.sync {sounds in
+			self.activityIndicator.isHidden = true
+			self.activityIndicator.stopAnimating()
+			self.sounds = sounds
+			self.collectionView.reloadData()
+		}
         view.backgroundColor = .tertiarySystemBackground
         collectionView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
 		view.addSubview(collectionView)
+		view.addSubview(activityIndicator)
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -63,8 +76,12 @@ class MessagesViewController: MSMessagesAppViewController, UICollectionViewDeleg
         instructionLabel.font = .systemFont(ofSize: 10.0)
         instructionLabel.textColor = .secondaryLabel
 		instructionLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
-		instructionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -60).isActive = true
+		instructionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -100).isActive = true
 		instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		
+		
+		activityIndicator.leadingAnchor.constraint(equalTo: instructionLabel.trailingAnchor, constant: 10).isActive = true
+		activityIndicator.centerYAnchor.constraint(equalTo: instructionLabel.centerYAnchor).isActive = true
 		
 		collectionView.heightAnchor.constraint(equalToConstant: (view.frame.size.height - instructionLabel.frame.size.height) * 0.7).isActive = true
 		collectionView.delegate = self
@@ -93,7 +110,7 @@ class MessagesViewController: MSMessagesAppViewController, UICollectionViewDeleg
 		touchTimer?.invalidate()
 		touchTimer = nil
 		if !didSend {
-			self.playSound(url: cell.sound.soundURL)
+			self.playSound(url: cell.sound.audioURL)
 		}
 		didSend = false
 	}
@@ -113,7 +130,7 @@ class MessagesViewController: MSMessagesAppViewController, UICollectionViewDeleg
 	func sendMessage(sound: Sound) {
 		if activeConversation != nil {
 			// The alternate filename doesn't actually work right now. Apparently it's been broken for years. Come on Apple.
-			activeConversation?.sendAttachment(sound.soundURL, withAlternateFilename: "Thwump", completionHandler: nil)
+			activeConversation?.sendAttachment(sound.audioURL, withAlternateFilename: "Thwump", completionHandler: nil)
 		}
 	}
 }

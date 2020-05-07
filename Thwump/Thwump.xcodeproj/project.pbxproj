@@ -3,90 +3,146 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FFB53B1F243C2BDA00CB5789 /* SoundsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB53B1E243C2BDA00CB5789 /* SoundsCollectionViewCell.swift */; };
-		FFDA4CB32439AB22004E5FD6 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDA4CB22439AB22004E5FD6 /* Messages.framework */; };
-		FFDA4CB62439AB22004E5FD6 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA4CB52439AB22004E5FD6 /* MessagesViewController.swift */; };
-		FFDA4CB92439AB22004E5FD6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CB72439AB22004E5FD6 /* MainInterface.storyboard */; };
-		FFDA4CBB2439AB24004E5FD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CBA2439AB24004E5FD6 /* Assets.xcassets */; };
-		FFDA4CC72439ABBA004E5FD6 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA4CC62439ABBA004E5FD6 /* SoundManager.swift */; };
-		FFDA4CC92439AD49004E5FD6 /* media in Resources */ = {isa = PBXBuildFile; fileRef = FFDA4CC82439AD49004E5FD6 /* media */; };
+		794E3422D95536B3AFE0FF5C /* Pods_Thwump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E368D92D8CE97A695BCFEBF0 /* Pods_Thwump.framework */; };
+		ACC7199DC5C67FAA08003570 /* Pods_Thwump_MessagesExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34963106140EFD598D35A4E /* Pods_Thwump_MessagesExtension.framework */; };
+		FF4395B02456988400316996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4395AF2456988400316996 /* Assets.xcassets */; };
+		FF4395B72456988400316996 /* Thwump MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF4395B62456988400316996 /* Thwump MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FF4395BC2456988400316996 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4395BB2456988400316996 /* Messages.framework */; };
+		FF4395BF2456988400316996 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4395BE2456988400316996 /* MessagesViewController.swift */; };
+		FF4395C22456988400316996 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4395C02456988400316996 /* MainInterface.storyboard */; };
+		FF4395C42456988500316996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4395C32456988500316996 /* Assets.xcassets */; };
+		FF4395D0245698F900316996 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4395CF245698F900316996 /* SoundManager.swift */; };
+		FF4395D2245698FF00316996 /* SoundsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4395D1245698FF00316996 /* SoundsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		FF4395B82456988400316996 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF4395A62456987F00316996 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF4395B52456988400316996;
+			remoteInfo = "Thwump MessagesExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FF4395CB2456988500316996 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FF4395B72456988400316996 /* Thwump MessagesExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		FFB53B1E243C2BDA00CB5789 /* SoundsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsCollectionViewCell.swift; sourceTree = "<group>"; };
-		FFDA4CA62439AB22004E5FD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FFDA4CA82439AB22004E5FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FFDA4CAD2439AB22004E5FD6 /* Thwump MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Thwump MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFDA4CB22439AB22004E5FD6 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
-		FFDA4CB52439AB22004E5FD6 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
-		FFDA4CB82439AB22004E5FD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		FFDA4CBA2439AB24004E5FD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FFDA4CBC2439AB24004E5FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FFDA4CC62439ABBA004E5FD6 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		FFDA4CC82439AD49004E5FD6 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = "<group>"; };
+		028FD8C8B28642BB1CD7183F /* Pods-Thwump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thwump.debug.xcconfig"; path = "Target Support Files/Pods-Thwump/Pods-Thwump.debug.xcconfig"; sourceTree = "<group>"; };
+		A34963106140EFD598D35A4E /* Pods_Thwump_MessagesExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thwump_MessagesExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9D66226D93A2B088703CE4B /* Pods-Thwump MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thwump MessagesExtension.release.xcconfig"; path = "Target Support Files/Pods-Thwump MessagesExtension/Pods-Thwump MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
+		E368D92D8CE97A695BCFEBF0 /* Pods_Thwump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thwump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1BEC51CBB1D3AD804103DA5 /* Pods-Thwump MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thwump MessagesExtension.debug.xcconfig"; path = "Target Support Files/Pods-Thwump MessagesExtension/Pods-Thwump MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		FDF5CC4FCFFA53F0FEC60AB7 /* Pods-Thwump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thwump.release.xcconfig"; path = "Target Support Files/Pods-Thwump/Pods-Thwump.release.xcconfig"; sourceTree = "<group>"; };
+		FF4395AC2456987F00316996 /* Thwump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thwump.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4395AF2456988400316996 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF4395B12456988400316996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF4395B62456988400316996 /* Thwump MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Thwump MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4395BB2456988400316996 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
+		FF4395BE2456988400316996 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		FF4395C12456988400316996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		FF4395C32456988500316996 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF4395C52456988500316996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF4395CF245698F900316996 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		FF4395D1245698FF00316996 /* SoundsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FFDA4CAA2439AB22004E5FD6 /* Frameworks */ = {
+		B47438044875C543530B47F9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFDA4CB32439AB22004E5FD6 /* Messages.framework in Frameworks */,
+				794E3422D95536B3AFE0FF5C /* Pods_Thwump.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4395B32456988400316996 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4395BC2456988400316996 /* Messages.framework in Frameworks */,
+				ACC7199DC5C67FAA08003570 /* Pods_Thwump_MessagesExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FFDA4C9C2439AB1C004E5FD6 = {
+		C286D749FF45CCE23396F127 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FFDA4CA52439AB1C004E5FD6 /* Thwump */,
-				FFDA4CB42439AB22004E5FD6 /* Thwump MessagesExtension */,
-				FFDA4CB12439AB22004E5FD6 /* Frameworks */,
-				FFDA4CA42439AB1C004E5FD6 /* Products */,
+				028FD8C8B28642BB1CD7183F /* Pods-Thwump.debug.xcconfig */,
+				FDF5CC4FCFFA53F0FEC60AB7 /* Pods-Thwump.release.xcconfig */,
+				F1BEC51CBB1D3AD804103DA5 /* Pods-Thwump MessagesExtension.debug.xcconfig */,
+				D9D66226D93A2B088703CE4B /* Pods-Thwump MessagesExtension.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FF4395A52456987F00316996 = {
+			isa = PBXGroup;
+			children = (
+				FF4395AE2456987F00316996 /* Thwump */,
+				FF4395BD2456988400316996 /* Thwump MessagesExtension */,
+				FF4395BA2456988400316996 /* Frameworks */,
+				FF4395AD2456987F00316996 /* Products */,
+				C286D749FF45CCE23396F127 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
-		FFDA4CA42439AB1C004E5FD6 /* Products */ = {
+		FF4395AD2456987F00316996 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FFDA4CAD2439AB22004E5FD6 /* Thwump MessagesExtension.appex */,
+				FF4395AC2456987F00316996 /* Thwump.app */,
+				FF4395B62456988400316996 /* Thwump MessagesExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FFDA4CA52439AB1C004E5FD6 /* Thwump */ = {
+		FF4395AE2456987F00316996 /* Thwump */ = {
 			isa = PBXGroup;
 			children = (
-				FFDA4CA62439AB22004E5FD6 /* Assets.xcassets */,
-				FFDA4CA82439AB22004E5FD6 /* Info.plist */,
+				FF4395AF2456988400316996 /* Assets.xcassets */,
+				FF4395B12456988400316996 /* Info.plist */,
 			);
 			path = Thwump;
 			sourceTree = "<group>";
 		};
-		FFDA4CB12439AB22004E5FD6 /* Frameworks */ = {
+		FF4395BA2456988400316996 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FFDA4CB22439AB22004E5FD6 /* Messages.framework */,
+				FF4395BB2456988400316996 /* Messages.framework */,
+				E368D92D8CE97A695BCFEBF0 /* Pods_Thwump.framework */,
+				A34963106140EFD598D35A4E /* Pods_Thwump_MessagesExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FFDA4CB42439AB22004E5FD6 /* Thwump MessagesExtension */ = {
+		FF4395BD2456988400316996 /* Thwump MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
-				FFDA4CB52439AB22004E5FD6 /* MessagesViewController.swift */,
-				FFDA4CC62439ABBA004E5FD6 /* SoundManager.swift */,
-				FFB53B1E243C2BDA00CB5789 /* SoundsCollectionViewCell.swift */,
-				FFDA4CB72439AB22004E5FD6 /* MainInterface.storyboard */,
-				FFDA4CC82439AD49004E5FD6 /* media */,
-				FFDA4CBA2439AB24004E5FD6 /* Assets.xcassets */,
-				FFDA4CBC2439AB24004E5FD6 /* Info.plist */,
+				FF4395BE2456988400316996 /* MessagesViewController.swift */,
+				FF4395D1245698FF00316996 /* SoundsCollectionViewCell.swift */,
+				FF4395CF245698F900316996 /* SoundManager.swift */,
+				FF4395C02456988400316996 /* MainInterface.storyboard */,
+				FF4395C32456988500316996 /* Assets.xcassets */,
+				FF4395C52456988500316996 /* Info.plist */,
 			);
 			path = "Thwump MessagesExtension";
 			sourceTree = "<group>";
@@ -94,13 +150,34 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FFDA4CAC2439AB22004E5FD6 /* Thwump MessagesExtension */ = {
+		FF4395AB2456987F00316996 /* Thwump */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FFDA4CBF2439AB24004E5FD6 /* Build configuration list for PBXNativeTarget "Thwump MessagesExtension" */;
+			buildConfigurationList = FF4395CC2456988500316996 /* Build configuration list for PBXNativeTarget "Thwump" */;
 			buildPhases = (
-				FFDA4CA92439AB22004E5FD6 /* Sources */,
-				FFDA4CAA2439AB22004E5FD6 /* Frameworks */,
-				FFDA4CAB2439AB22004E5FD6 /* Resources */,
+				27085AE5C9F48DEF13FC33A8 /* [CP] Check Pods Manifest.lock */,
+				FF4395AA2456987F00316996 /* Resources */,
+				FF4395CB2456988500316996 /* Embed App Extensions */,
+				B47438044875C543530B47F9 /* Frameworks */,
+				A4D17CDF40C10B0EBD5D285C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF4395B92456988400316996 /* PBXTargetDependency */,
+			);
+			name = Thwump;
+			productName = Thwump;
+			productReference = FF4395AC2456987F00316996 /* Thwump.app */;
+			productType = "com.apple.product-type.application.messages";
+		};
+		FF4395B52456988400316996 /* Thwump MessagesExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF4395C82456988500316996 /* Build configuration list for PBXNativeTarget "Thwump MessagesExtension" */;
+			buildPhases = (
+				7BCF855BBC1818798D9E9A0B /* [CP] Check Pods Manifest.lock */,
+				FF4395B22456988400316996 /* Sources */,
+				FF4395B32456988400316996 /* Frameworks */,
+				FF4395B42456988400316996 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -108,25 +185,28 @@
 			);
 			name = "Thwump MessagesExtension";
 			productName = "Thwump MessagesExtension";
-			productReference = FFDA4CAD2439AB22004E5FD6 /* Thwump MessagesExtension.appex */;
+			productReference = FF4395B62456988400316996 /* Thwump MessagesExtension.appex */;
 			productType = "com.apple.product-type.app-extension.messages";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		FFDA4C9D2439AB1C004E5FD6 /* Project object */ = {
+		FF4395A62456987F00316996 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = bnwlkr;
 				TargetAttributes = {
-					FFDA4CAC2439AB22004E5FD6 = {
-						CreatedOnToolsVersion = 11.3;
+					FF4395AB2456987F00316996 = {
+						CreatedOnToolsVersion = 11.4;
+					};
+					FF4395B52456988400316996 = {
+						CreatedOnToolsVersion = 11.4;
 					};
 				};
 			};
-			buildConfigurationList = FFDA4CA02439AB1C004E5FD6 /* Build configuration list for PBXProject "Thwump" */;
+			buildConfigurationList = FF4395A92456987F00316996 /* Build configuration list for PBXProject "Thwump" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -134,47 +214,127 @@
 				en,
 				Base,
 			);
-			mainGroup = FFDA4C9C2439AB1C004E5FD6;
-			productRefGroup = FFDA4CA42439AB1C004E5FD6 /* Products */;
+			mainGroup = FF4395A52456987F00316996;
+			productRefGroup = FF4395AD2456987F00316996 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FFDA4CAC2439AB22004E5FD6 /* Thwump MessagesExtension */,
+				FF4395AB2456987F00316996 /* Thwump */,
+				FF4395B52456988400316996 /* Thwump MessagesExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FFDA4CAB2439AB22004E5FD6 /* Resources */ = {
+		FF4395AA2456987F00316996 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFDA4CC92439AD49004E5FD6 /* media in Resources */,
-				FFDA4CBB2439AB24004E5FD6 /* Assets.xcassets in Resources */,
-				FFDA4CB92439AB22004E5FD6 /* MainInterface.storyboard in Resources */,
+				FF4395B02456988400316996 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4395B42456988400316996 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4395C42456988500316996 /* Assets.xcassets in Resources */,
+				FF4395C22456988400316996 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		27085AE5C9F48DEF13FC33A8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Thwump-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BCF855BBC1818798D9E9A0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Thwump MessagesExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4D17CDF40C10B0EBD5D285C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Thwump/Pods-Thwump-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Thwump/Pods-Thwump-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Thwump/Pods-Thwump-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		FFDA4CA92439AB22004E5FD6 /* Sources */ = {
+		FF4395B22456988400316996 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFDA4CB62439AB22004E5FD6 /* MessagesViewController.swift in Sources */,
-				FFDA4CC72439ABBA004E5FD6 /* SoundManager.swift in Sources */,
-				FFB53B1F243C2BDA00CB5789 /* SoundsCollectionViewCell.swift in Sources */,
+				FF4395BF2456988400316996 /* MessagesViewController.swift in Sources */,
+				FF4395D0245698F900316996 /* SoundManager.swift in Sources */,
+				FF4395D2245698FF00316996 /* SoundsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FF4395B92456988400316996 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF4395B52456988400316996 /* Thwump MessagesExtension */;
+			targetProxy = FF4395B82456988400316996 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		FFDA4CB72439AB22004E5FD6 /* MainInterface.storyboard */ = {
+		FF4395C02456988400316996 /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FFDA4CB82439AB22004E5FD6 /* Base */,
+				FF4395C12456988400316996 /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -182,7 +342,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		FFDA4CBD2439AB24004E5FD6 /* Debug */ = {
+		FF4395C62456988500316996 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -242,7 +402,7 @@
 			};
 			name = Debug;
 		};
-		FFDA4CBE2439AB24004E5FD6 /* Release */ = {
+		FF4395C72456988500316996 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -296,11 +456,13 @@
 			};
 			name = Release;
 		};
-		FFDA4CC02439AB24004E5FD6 /* Debug */ = {
+		FF4395C92456988500316996 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1BEC51CBB1D3AD804103DA5 /* Pods-Thwump MessagesExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = T7ST5D3QZ2;
 				INFOPLIST_FILE = "Thwump MessagesExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -317,11 +479,13 @@
 			};
 			name = Debug;
 		};
-		FFDA4CC12439AB24004E5FD6 /* Release */ = {
+		FF4395CA2456988500316996 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9D66226D93A2B088703CE4B /* Pods-Thwump MessagesExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = T7ST5D3QZ2;
 				INFOPLIST_FILE = "Thwump MessagesExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -338,28 +502,73 @@
 			};
 			name = Release;
 		};
+		FF4395CD2456988500316996 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 028FD8C8B28642BB1CD7183F /* Pods-Thwump.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = T7ST5D3QZ2;
+				INFOPLIST_FILE = Thwump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bnwlkr.Thwump;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FF4395CE2456988500316996 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDF5CC4FCFFA53F0FEC60AB7 /* Pods-Thwump.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = T7ST5D3QZ2;
+				INFOPLIST_FILE = Thwump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bnwlkr.Thwump;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FFDA4CA02439AB1C004E5FD6 /* Build configuration list for PBXProject "Thwump" */ = {
+		FF4395A92456987F00316996 /* Build configuration list for PBXProject "Thwump" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FFDA4CBD2439AB24004E5FD6 /* Debug */,
-				FFDA4CBE2439AB24004E5FD6 /* Release */,
+				FF4395C62456988500316996 /* Debug */,
+				FF4395C72456988500316996 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FFDA4CBF2439AB24004E5FD6 /* Build configuration list for PBXNativeTarget "Thwump MessagesExtension" */ = {
+		FF4395C82456988500316996 /* Build configuration list for PBXNativeTarget "Thwump MessagesExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FFDA4CC02439AB24004E5FD6 /* Debug */,
-				FFDA4CC12439AB24004E5FD6 /* Release */,
+				FF4395C92456988500316996 /* Debug */,
+				FF4395CA2456988500316996 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF4395CC2456988500316996 /* Build configuration list for PBXNativeTarget "Thwump" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4395CD2456988500316996 /* Debug */,
+				FF4395CE2456988500316996 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = FFDA4C9D2439AB1C004E5FD6 /* Project object */;
+	rootObject = FF4395A62456987F00316996 /* Project object */;
 }

@@ -1,0 +1,6 @@
+framework module Pods_Thwump_MessagesExtension {
+  umbrella header "Pods-Thwump MessagesExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}
