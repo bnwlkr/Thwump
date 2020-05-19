@@ -115,14 +115,14 @@ class SoundManager {
 	func deleteSound(soundTitle: String) {
 		print("deleting \(soundTitle)")
 		try? fileManager.removeItem(at: textureDirectoryURL.appendingPathComponent("\(soundTitle).png"))
-		try? fileManager.removeItem(at: audioDirectoryURL.appendingPathComponent("\(soundTitle).mp3"))
+		try? fileManager.removeItem(at: audioDirectoryURL.appendingPathComponent("\(soundTitle).mp4"))
 	}
 	
 	func downloadSound(soundTitle: String, completion: @escaping ()->()) {
 		print("downloading \(soundTitle)")
-		let audioDestination: DownloadRequest.Destination = {_,_ in return (self.audioDirectoryURL.appendingPathComponent("\(soundTitle).mp3"), .removePreviousFile)}
+		let audioDestination: DownloadRequest.Destination = {_,_ in return (self.audioDirectoryURL.appendingPathComponent("\(soundTitle).mp4"), .removePreviousFile)}
 		let textureDestination: DownloadRequest.Destination = {_,_ in return (self.textureDirectoryURL.appendingPathComponent("\(soundTitle).png"), .removePreviousFile)}
-		AF.download("https://thwump.bnwl.kr/sounds/\(soundTitle).mp3", to: audioDestination).response {
+		AF.download("https://thwump.bnwl.kr/sounds/\(soundTitle).mp4", to: audioDestination).response {
 			response in
 			if response.error == nil {
 				print("downloaded audio for \(soundTitle)")
@@ -142,7 +142,7 @@ class SoundManager {
 	func getLocalSounds () -> [Sound] {
 		var result: [Sound] = []
 		do {
-			let audioURLs = try fileManager.contentsOfDirectory(at: audioDirectoryURL, includingPropertiesForKeys: nil).filter { $0.pathExtension == "mp3" }
+			let audioURLs = try fileManager.contentsOfDirectory(at: audioDirectoryURL, includingPropertiesForKeys: nil).filter { $0.pathExtension == "mp4" }
 			let textureURLs = try fileManager.contentsOfDirectory(at: textureDirectoryURL, includingPropertiesForKeys: nil).filter { $0.pathExtension == "png" }
 
 			for audioURL in audioURLs {
