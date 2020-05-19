@@ -120,7 +120,7 @@ class MessagesViewController: MSMessagesAppViewController, UICollectionViewDeleg
 		do {
 			try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 			try AVAudioSession.sharedInstance().setActive(true)
-			player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+			player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp4.rawValue)
 			player.play()
 		} catch let error {
 			print(error.localizedDescription)
