@@ -129,8 +129,11 @@ class MessagesViewController: MSMessagesAppViewController, UICollectionViewDeleg
 	
 	func sendMessage(sound: Sound) {
 		if activeConversation != nil {
-			// The alternate filename doesn't actually work right now. Apparently it's been broken for years. Come on Apple.
-			activeConversation?.sendAttachment(sound.audioURL, withAlternateFilename: "Thwump", completionHandler: nil)
+			if activeConversation?.remoteParticipantIdentifiers.count == 0 {
+				activeConversation?.insertAttachment(sound.audioURL, withAlternateFilename: "Thwump", completionHandler: nil)
+			} else {
+				activeConversation?.sendAttachment(sound.audioURL, withAlternateFilename: "Thwump", completionHandler: nil)
+			}
 		}
 	}
 }

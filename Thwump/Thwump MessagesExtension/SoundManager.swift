@@ -64,12 +64,11 @@ class SoundManager {
 			switch (response.result) {
 				case .success(let result):
 					let manifestJSON = result as! [String:Any]
+					print(manifestJSON)
 					let refreshKey = manifestJSON["refreshKey"] as! Int
 					let manifestSoundTitles = manifestJSON["soundNames"] as! [String]
 					if UserDefaults.standard.integer(forKey: "refreshKey") != refreshKey {
-						for sound in self.getLocalSounds() {
-							self.deleteSound(soundTitle: sound.title)
-						}
+						self.clearAllLocalMedia()
 						UserDefaults.standard.set(refreshKey, forKey: "refreshKey")
 					}
 					
@@ -135,6 +134,20 @@ class SoundManager {
 						print("downloaded texture for \(soundTitle)")
 						completion()
 				}
+			}
+		}
+	}
+	
+	func clearAllLocalMedia () {
+		print("clearing out media directories")
+		if let audioPaths = try? fileManager.contentsOfDirectory(atPath: audioDirectoryURL.path) {
+			for audioPath in audioPaths {
+				try? fileManager.removeItem(at: audioDirectoryURL.appendingPathComponent(audioPath))
+			}
+		}
+		if let texturePaths = try? fileManager.contentsOfDirectory(atPath: textureDirectoryURL.path) {
+			for texturePath in texturePaths {
+				try? fileManager.removeItem(at: textureDirectoryURL.appendingPathComponent(texturePath))
 			}
 		}
 	}
