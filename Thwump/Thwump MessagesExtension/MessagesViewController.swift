@@ -72,7 +72,7 @@ class MessagesViewController: MSMessagesAppViewController, UICollectionViewDeleg
         instructionLabel.numberOfLines = -1
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(instructionLabel)
-        instructionLabel.text = "tap to preview, long press to send, long press to listen to a received message"
+        instructionLabel.text = "tap to preview, long press to send"
         instructionLabel.font = .systemFont(ofSize: 10.0)
         instructionLabel.textColor = .secondaryLabel
 		instructionLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
