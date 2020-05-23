@@ -10,8 +10,14 @@ import Foundation
 import UIKit
 import Alamofire
 
-class SoundManager {
+protocol MediaUpdateDelegate {
+	func added (sound: Sound)
+	func removed (soundTitle: String)
+}
 
+class SoundManager {
+	
+	var mediaUpdateDelegate: MediaUpdateDelegate?
 	let fileManager: FileManager
 	var documentsDirectoryURL: URL {
 		get {
@@ -37,9 +43,9 @@ class SoundManager {
 		}
 	}
 	
-	var localManifestURL: URL {
+	var soundOrderJsonURL: URL {
 		get {
-			return mediaDirectoryURL.appendingPathComponent("manifest.json")
+			return mediaDirectoryURL.appendingPathComponent("order.json")
 		}
 	}
 	
@@ -58,15 +64,23 @@ class SoundManager {
 		}
 	}
 	
-	// this is the only function in the public API
-	public func sync (completion: @escaping ([Sound]) -> ()) {
-		AF.request("https://thwump.bnwl.kr/manifest.json").responseJSON { response in
+	public func sync (completion: @escaping () -> ()) {
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) {
+			AF.request("https://thwump.bnwl.kr/manifest.json").responseJSON { response in
 			switch (response.result) {
 				case .success(let result):
 					let manifestJSON = result as! [String:Any]
 					print(manifestJSON)
 					let refreshKey = manifestJSON["refreshKey"] as! Int
 					let manifestSoundTitles = manifestJSON["soundNames"] as! [String]
+					
+					// write the ordering specified in the manifest to a file
+					let soundOrderJsonData = try? JSONSerialization.data(withJSONObject: manifestSoundTitles, options: .init())
+					if soundOrderJsonData != nil {
+						try? soundOrderJsonData?.write(to: self.soundOrderJsonURL)
+					}
+					
+					// clear everything if the refreshKey is out of date
 					if UserDefaults.standard.integer(forKey: "refreshKey") != refreshKey {
 						self.clearAllLocalMedia()
 						UserDefaults.standard.set(refreshKey, forKey: "refreshKey")
@@ -76,6 +90,7 @@ class SoundManager {
 					for sound in self.getLocalSounds() {
 						if !manifestSoundTitles.contains(sound.title) {
 							self.deleteSound(soundTitle: sound.title)
+							self.mediaUpdateDelegate?.removed(soundTitle: sound.title)
 						}
 					}
 					
@@ -85,31 +100,20 @@ class SoundManager {
 					for soundTitle in manifestSoundTitles {
 						if !localSoundTitles.contains(soundTitle) {
 							downloadGroup.enter()
-							self.downloadSound(soundTitle: soundTitle) {
-								downloadGroup.leave()
-							}
+							self.downloadSound(soundTitle: soundTitle, completion: downloadGroup.leave)
 						}
 					}
 					downloadGroup.notify(queue: .main) {
-						let localSounds = self.getLocalSounds()
-						var localSoundsSorted: [Sound] = []
-						for manifestSoundTitle in manifestSoundTitles {
-							for localSound in localSounds {
-								if localSound.title == manifestSoundTitle {
-									localSoundsSorted.append(localSound)
-								}
-							}
-						}
-						completion(localSoundsSorted)
+						completion()
 					}
 				case .failure(let error):
 					print(error)
-					completion(self.getLocalSounds())
+					completion()
 			}
 		}
+		}
+		
 	}
-	
-	
 	
 	func deleteSound(soundTitle: String) {
 		print("deleting \(soundTitle)")
@@ -152,6 +156,7 @@ class SoundManager {
 		}
 	}
 	
+	// wil return things in the ordering specified by the soundOrderJson file
 	func getLocalSounds () -> [Sound] {
 		var result: [Sound] = []
 		do {
@@ -166,11 +171,29 @@ class SoundManager {
 					}
 				}
 			}
-			return result
 		} catch {
 			print(error)
 			return []
 		}
+		
+		if let soundOrderJsonData = try? Data(contentsOf: self.soundOrderJsonURL) {
+			if let soundOrderArray = try? JSONSerialization.jsonObject(with: soundOrderJsonData, options: .init()) as? [String] {
+				return self.sortedSounds(sounds: result, orderedTitles: soundOrderArray)
+			}
+		}
+		return result
+	}
+	
+	func sortedSounds (sounds: [Sound], orderedTitles: [String]) -> [Sound] {
+		var result: [Sound] = []
+		for orderedTitle in orderedTitles {
+			for sound in sounds {
+				if sound.title == orderedTitle {
+					result.append(sound)
+				}
+			}
+		}
+		return result
 	}
 	
 	

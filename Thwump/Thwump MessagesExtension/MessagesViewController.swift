@@ -48,11 +48,12 @@ class MessagesViewController: MSMessagesAppViewController, UICollectionViewDeleg
 		activityIndicator.startAnimating()
 		activityIndicator.isHidden = false
 		activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-		soundManager.sync {sounds in
-			self.activityIndicator.isHidden = true
-			self.activityIndicator.stopAnimating()
-			self.sounds = sounds
+		self.sounds = soundManager.getLocalSounds()
+		soundManager.sync {
+			self.sounds = soundManager.getLocalSounds()
 			self.collectionView.reloadData()
+			self.activityIndicator.stopAnimating()
+			self.activityIndicator.isHidden = true
 		}
         view.backgroundColor = .tertiarySystemBackground
         collectionView.delegate = self
