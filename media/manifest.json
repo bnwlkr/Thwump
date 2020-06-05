@@ -1,11 +1,16 @@
 {
-	"refreshKey" : 11,
+	"refreshKey" : 13,
 	"soundNames" : [
-		"_unbelievable_",
-		"_damn_",
-		"_what_",
-		"_wow_",
-		"_cool_",
-		"_notsure_"
+		"no",
+		"yes",
+		"hellothere",
+		"wow",
+		"jesuschrist",
+		"cantbelieve",
+		"survive",
+		"whatshesaid",
+		"itshappening",
+		"wednesday",
+		"whaddyaknow"
 	]
 }
